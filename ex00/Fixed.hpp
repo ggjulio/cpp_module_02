@@ -6,7 +6,7 @@
 /*   By: juligonz <juligonz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/26 00:39:51 by juligonz          #+#    #+#             */
-/*   Updated: 2021/01/26 22:56:16 by juligonz         ###   ########.fr       */
+/*   Updated: 2021/01/26 23:11:52 by juligonz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ public:
 	~Fixed();
 
 	void operator=(const Fixed &other);
-	
+
 	int		getRawBits(void) const;
 	void	setRawBits(int const raw);
 
