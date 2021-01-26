@@ -6,7 +6,7 @@
 /*   By: juligonz <juligonz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/26 00:39:48 by juligonz          #+#    #+#             */
-/*   Updated: 2021/01/26 23:27:39 by juligonz         ###   ########.fr       */
+/*   Updated: 2021/01/26 23:37:57 by juligonz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 
 const int Fixed::_nbBits = 8;
 
-Fixed::Fixed(int value): _value(value){
+Fixed::Fixed(int const &value): _value(value){
 	std::cout << "Default constructor called  (value:"
 		<< value << ")" << std::endl;
 }
