@@ -6,7 +6,7 @@
 /*   By: juligonz <juligonz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/26 00:39:51 by juligonz          #+#    #+#             */
-/*   Updated: 2021/01/27 00:42:03 by juligonz         ###   ########.fr       */
+/*   Updated: 2021/01/27 21:44:39 by juligonz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,17 +20,18 @@ class Fixed
 {
 private:
 	int _value;
-	int static const _nbBits;
+	int static const _sizeFractionalBits;
+	int static const _fractionalMask;
 
 public:
-	Fixed(int const &value=0);
+	Fixed();
+	Fixed(int const &value);
 	Fixed(float const &value);
 	Fixed(Fixed const &other);
 	
 	~Fixed();
 
 	Fixed& operator=(Fixed const &);
-    // std::ostream operator<<(int y);
 
 	
 	int		getRawBits(void) const;
@@ -39,8 +40,10 @@ public:
 	float	toFloat() const;
 	int		toInt() const;
 
-	
-
+	int static getSizeFractionalBits(void);
+	int static getFractionalMask(void);
 };
+
+std::ostream& operator <<(std::ostream& out, Fixed const &f);
 
 #endif

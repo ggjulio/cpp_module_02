@@ -6,7 +6,7 @@
 /*   By: juligonz <juligonz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/26 00:39:48 by juligonz          #+#    #+#             */
-/*   Updated: 2021/01/27 00:44:57 by juligonz         ###   ########.fr       */
+/*   Updated: 2021/01/27 21:47:07 by juligonz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,29 +14,56 @@
 #include <iostream>
 #include <ostream>
 #include <string>
+#include <cmath>
 
-const int Fixed::_nbBits = 8;
+int const Fixed::_sizeFractionalBits = 8;
+int const Fixed::_fractionalMask = (1 << Fixed::getSizeFractionalBits())-1;
+
+Fixed::Fixed(): _value(0){
+	std::cout << "Default constructor called" << std::endl;
+}
 
 Fixed::Fixed(int const &value){
-	_value = value;	
+	std::cout << "Int constructor called  (value:"
+		<< value << ")" << std::endl;
+	_value = value << _sizeFractionalBits;	
 }
 
 Fixed::Fixed(float const &value){
-	_value = value;	
+	std::cout << "Float constructor called  (value:"
+		<< value << ")" << std::endl;
+	_value = roundf(value * (1<<_sizeFractionalBits));	
 }
 
 Fixed::Fixed(Fixed const &other){
+	std::cout << "Copy constructor called  (value:"	
+		<< other._value << ")" << std::endl;
 	*this = other;
 }
-Fixed::~Fixed(){}
+Fixed::~Fixed(){
+	std::cout << "Destructor called" << std::endl; 
+}
 
 Fixed& Fixed::operator=(Fixed const &other){
+	std::cout << "Assignation operator called  (value:"
+		<< other._value << ")" << std::endl;
 	_value = other.getRawBits();
 	return *this;
 }
 
+int	Fixed::getSizeFractionalBits(void){
+	return _sizeFractionalBits;
+}
+int	Fixed::getFractionalMask(void){
+	return _fractionalMask;
+}
+
 std::ostream& operator <<(std::ostream& out, Fixed const &f){
-	return out << f.getRawBits();
+	if (f.getRawBits() & Fixed::getFractionalMask())
+		out << f.toFloat();
+	else
+		out << f.toInt();
+	return out;
 }
 
 int	Fixed::getRawBits(void) const{
@@ -48,8 +75,9 @@ void Fixed::setRawBits(int const raw){
 }
 
 float	Fixed::toFloat() const{
-	return -1;
+	return (float)_value / (float)(1 << _sizeFractionalBits);
 }
+
 int		Fixed::toInt() const{
-	return -1;
+	return _value >> _sizeFractionalBits;
 }
