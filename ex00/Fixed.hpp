@@ -6,7 +6,7 @@
 /*   By: juligonz <juligonz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/26 00:39:51 by juligonz          #+#    #+#             */
-/*   Updated: 2021/01/26 23:39:22 by juligonz         ###   ########.fr       */
+/*   Updated: 2021/01/27 18:20:41 by juligonz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ class Fixed
 {
 private:
 	int _value;
-	int static const _nbBits;
+	int static const _sizeFractionalBits;
 
 public:
 	Fixed(int const &value=0);
