@@ -6,7 +6,7 @@
 /*   By: juligonz <juligonz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/26 00:39:48 by juligonz          #+#    #+#             */
-/*   Updated: 2021/01/27 21:47:07 by juligonz         ###   ########.fr       */
+/*   Updated: 2021/01/27 22:33:49 by juligonz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,12 +58,12 @@ int	Fixed::getFractionalMask(void){
 	return _fractionalMask;
 }
 
-std::ostream& operator <<(std::ostream& out, Fixed const &f){
+std::ostream& operator <<(std::ostream& os, Fixed const &f){
 	if (f.getRawBits() & Fixed::getFractionalMask())
-		out << f.toFloat();
+		os << f.toFloat();
 	else
-		out << f.toInt();
-	return out;
+		os << f.toInt();
+	return os;
 }
 
 int	Fixed::getRawBits(void) const{

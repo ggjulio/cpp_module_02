@@ -6,7 +6,7 @@
 /*   By: juligonz <juligonz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/26 00:39:51 by juligonz          #+#    #+#             */
-/*   Updated: 2021/01/27 22:33:29 by juligonz         ###   ########.fr       */
+/*   Updated: 2021/01/28 01:01:46 by juligonz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,16 +24,12 @@ private:
 	int static const _fractionalMask;
 
 public:
-	Fixed();
-	Fixed(int const &value);
+	Fixed(int const &value=0);
 	Fixed(float const &value);
 	Fixed(Fixed const &other);
 	
 	~Fixed();
 
-	Fixed& operator=(Fixed const &);
-
-	
 	int		getRawBits(void) const;
 	void	setRawBits(int const raw);
 
@@ -42,6 +38,33 @@ public:
 
 	int static getSizeFractionalBits(void);
 	int static getFractionalMask(void);
+	
+	Fixed& operator=(Fixed const &);
+	
+	bool operator==(Fixed const &);
+	bool operator!=(Fixed const &);
+	// Fixed& operator>(Fixed const &);
+	// Fixed& operator<(Fixed const &);
+	// Fixed& operator>=(Fixed const &);
+	// Fixed& operator<=(Fixed const &);
+	
+	Fixed operator+(Fixed const &);
+	// Fixed operator-(Fixed const &);
+	Fixed operator*(Fixed const &);
+	// Fixed operator/(Fixed const &);
+
+	Fixed& operator++();	//prefix increment
+	Fixed  operator++(int); //postfix increment
+	// Fixed& operator--(); 	//prefix decrement
+	// Fixed  operator--(int); //postfix decrement
+
+	// static Fixed& min(Fixed const &left, Fixed const &right);
+	// static Fixed& const max(Fixed const &left, Fixed const &right);
+	static Fixed& max(Fixed &left, Fixed &right);
+	static Fixed& const max(Fixed const &left, Fixed const &right);
+	// overload missing!
+	// overload missing!
+
 };
 
 std::ostream& operator <<(std::ostream& os, Fixed const &f);
