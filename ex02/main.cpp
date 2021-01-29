@@ -6,7 +6,7 @@
 /*   By: juligonz <juligonz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/26 23:32:45 by juligonz          #+#    #+#             */
-/*   Updated: 2021/01/29 00:53:18 by juligonz         ###   ########.fr       */
+/*   Updated: 2021/01/29 10:41:54 by juligonz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,7 @@ int main(void) {
 	std::cout <<"############### div test:"<< std::endl;
 		std::cout << Fixed(10.10f) / Fixed(2.f) << std::endl;
 		std::cout << Fixed(0.5f) / Fixed(2.f) << std::endl;
+		std::cout << Fixed(5.5f) / Fixed(2.5f) << std::endl;
 		
 	std::cout <<"############### + test:"<< std::endl;
 		std::cout << Fixed(Fixed(0.5f) + Fixed(2.f)) << std::endl;

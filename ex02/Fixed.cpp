@@ -6,7 +6,7 @@
 /*   By: juligonz <juligonz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/26 00:39:48 by juligonz          #+#    #+#             */
-/*   Updated: 2021/01/29 00:27:27 by juligonz         ###   ########.fr       */
+/*   Updated: 2021/01/29 10:41:20 by juligonz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,7 +91,7 @@ Fixed Fixed::operator*(Fixed const &other){
 Fixed Fixed::operator/(Fixed const &other){
 	Fixed result;
 
-	result._value = _value / other._value << _sizeFractionalBits;
+	result._value = (_value << _sizeFractionalBits) / other._value ;
 	return result;	
 }
 
@@ -147,5 +147,3 @@ std::ostream& operator <<(std::ostream& os, Fixed const &f)
 		os << f.toInt();
 	return os;
 }
-
-
