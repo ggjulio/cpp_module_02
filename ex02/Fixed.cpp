@@ -6,7 +6,7 @@
 /*   By: juligonz <juligonz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/26 00:39:48 by juligonz          #+#    #+#             */
-/*   Updated: 2021/01/28 01:04:40 by juligonz         ###   ########.fr       */
+/*   Updated: 2021/01/29 00:27:27 by juligonz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,10 +55,20 @@ bool Fixed::operator!=(Fixed const &other){
 	return _value != other._value;
 }
 
-// Fixed& Fixed::operator>(Fixed const &);
-// Fixed& Fixed::operator<(Fixed const &);
-// Fixed& Fixed::operator>=(Fixed const &);
-// Fixed& Fixed::operator<=(Fixed const &);
+bool Fixed::operator>(Fixed const &other){
+	return _value > other._value;
+}
+
+bool Fixed::operator<(Fixed const &other){
+	return _value < other._value;
+}
+
+bool Fixed::operator<=(Fixed const &other){
+	return _value <= other._value;
+}
+bool Fixed::operator>=(Fixed const &other){
+	return _value >= other._value;
+}
 
 Fixed Fixed::operator+(Fixed const &other){
 	Fixed result;
@@ -66,44 +76,68 @@ Fixed Fixed::operator+(Fixed const &other){
 	result._value = _value + other._value;
 	return result;
 }
-// Fixed Fixed::operator-(Fixed const &);
+Fixed Fixed::operator-(Fixed const &other){
+	Fixed result;
+	
+	result._value = _value - other._value;
+	return result;	
+}
 Fixed Fixed::operator*(Fixed const &other){
 	Fixed result;
 
 	result._value = _value * other._value >> _sizeFractionalBits;
 	return result;
 }
-// Fixed Fixed::operator/(Fixed const &other){
-// 	Fixed result;
+Fixed Fixed::operator/(Fixed const &other){
+	Fixed result;
 
-// 	result._value = _value / other._value << _sizeFractionalBits;
-// 	return result;	
-// }
+	result._value = _value / other._value << _sizeFractionalBits;
+	return result;	
+}
 
 Fixed& Fixed::operator++(){
 	_value++;
 	return *this;
 }
 Fixed  Fixed::operator++(int){
-	Fixed result = *this;
+	Fixed result;
 	
-	result._value++;
+	result._value = _value++;
 	return result;
 }
-// Fixed& operator--(); 	//prefix decrement
-// Fixed  operator--(int); //postfix decrement
 
-// Fixed& min(Fixed const &left, Fixed const &right);
-Fixed& max(Fixed &left, Fixed &right){
+Fixed& Fixed::operator--(){
+	_value--;
+	return *this;
+}
+Fixed  Fixed::operator--(int){
+	Fixed result;
+	
+	result._value = _value--;
+	return result;
+}
+
+Fixed& Fixed::min(Fixed &left, Fixed &right){
+	if (left.getRawBits() < right.getRawBits())
+		return left;
+	return right;
+}
+Fixed const &Fixed::min(Fixed const &left, Fixed const &right){
+	if (left.getRawBits() < right.getRawBits())
+		return left;
+	return right;
+}
+
+Fixed& Fixed::max(Fixed &left, Fixed &right){
 	if (left.getRawBits() > right.getRawBits())
 		return left;
 	return right;
 }
-// Fixed& const Fixed::max(Fixed const &left, Fixed const &right){
-// 	if (left.getRawBits() > right.getRawBits())
-// 		return left;
-// 	return right;
-// }
+Fixed const &Fixed::max(Fixed const &left, Fixed const &right){
+	if (left.getRawBits() > right.getRawBits())
+		return left;
+	return right;
+}
 
 std::ostream& operator <<(std::ostream& os, Fixed const &f)
 {
